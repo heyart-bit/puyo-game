@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Noto Sans JP', system-ui, sans-serif;
+  background: #070712;
+  color: #e0e8ff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Animated background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(60, 40, 120, 0.25) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(20, 60, 120, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(10, 10, 40, 0.8) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* Flash animation for matched puyos */
+@keyframes flash {
+  from { filter: brightness(1.0) saturate(1.0); }
+  to   { filter: brightness(2.5) saturate(0.3) drop-shadow(0 0 12px white); }
+}
+
+/* Chain popup animation */
+@keyframes chainPop {
+  0%   { transform: scale(0.3) translateY(20px); opacity: 0; }
+  30%  { transform: scale(1.2) translateY(0);    opacity: 1; }
+  60%  { transform: scale(1.0) translateY(0);    opacity: 1; }
+  100% { transform: scale(0.9) translateY(-20px); opacity: 0; }
+}
+
+/* Score increment animation */
+@keyframes scoreUp {
+  from { transform: translateY(0); opacity: 1; }
+  to   { transform: translateY(-30px); opacity: 0; }
+}
+
+/* Pulse glow for score display */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(180,120,255,0); }
+  50%       { box-shadow: 0 0 20px 4px rgba(180,120,255,0.3); }
+}
+
+/* Scanline overlay for retro feel */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Glassmorphism panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+/* Neon button */
+.btn-neon {
+  background: linear-gradient(135deg, rgba(80,60,200,0.3), rgba(60,40,160,0.3));
+  border: 1px solid rgba(120,100,255,0.5);
+  border-radius: 10px;
+  color: #c0b0ff;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 10px 24px;
+  font-size: 14px;
+}
+
+.btn-neon:hover {
+  background: linear-gradient(135deg, rgba(100,80,240,0.5), rgba(80,60,200,0.5));
+  border-color: rgba(160,140,255,0.8);
+  box-shadow: 0 0 20px rgba(120,100,255,0.4);
+  color: #e0d8ff;
+  transform: translateY(-1px);
+}
+
+.btn-neon:active {
+  transform: translateY(0);
+}
