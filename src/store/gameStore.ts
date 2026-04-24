@@ -127,7 +127,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       : getFallSpeed(s.level);
 
     if (s.phase === 'playing') {
-      let cur = s.current;
+      let cur = s.current!;
       let { fallTimer, dasTimer, dasDirection, dasActive } = s;
 
       // DAS
@@ -165,7 +165,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     }
 
     if (s.phase === 'locking') {
-      let cur = s.current;
+      let cur = s.current!;
       let { lockTimer, dasTimer, dasDirection, dasActive } = s;
 
       // DAS during lock
